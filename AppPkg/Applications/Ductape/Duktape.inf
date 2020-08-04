@@ -1,0 +1,43 @@
+## @file
+# Duktape.inf
+#
+#  UEFI port of the Duktape embeddable Javascript engine, duktape-2.5.0, released on 24 Nov 2019
+#
+##
+
+[Defines]
+  INF_VERSION    = 0x00010006
+  BASE_NAME      = Duktape
+  FILE_GUID      = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  MODULE_TYPE    = UEFI_APPLICATION
+  VERSION_STRING = 0.1
+  ENTRY_POINT    = ShellCEntryLib
+
+[LibraryClasses]
+  LibC
+  LibStdio
+  LibStdLib
+  LibSignal
+  LibString
+  LibMath
+  LibTime
+  DevShell
+  UefiLib
+  ShellCEntryLib
+
+[Sources]
+ src/duk_config.h
+ src/duktape.h
+  src/duktape.c
+ examples/cmdline/duk_cmdline.h
+  examples/cmdline/duk_cmdline.c
+
+[Packages]
+  StdLib/StdLib.dec
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+
+[BuildOptions]
+#   MSFT:*_*_*_CC_FLAGS   = /Oi- /wd4702
+#  GCC:*_*_*_CC_FLAGS = -std=c99 -Wno-error=implicit-function-declaration
+#  GCC:*_*_*_CC_FLAGS = -Wno-error=implicit-function-declaration
